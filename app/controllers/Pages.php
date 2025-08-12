@@ -5,7 +5,7 @@
             $this -> pagesModel = $this->model('M_pages'); // Load the model
 
             
-        }
+        } 
 
         public function index() {
             
