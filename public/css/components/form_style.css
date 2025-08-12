@@ -1,0 +1,63 @@
+/* Container for the whole form */
+.form-container {
+    width: 100%;
+    max-width: 400px;        /* Keeps form from being too wide */
+    margin: 50px auto;       /* Center form */
+    padding: 20px;
+    background: #ffffff;     /* White background */
+    border-radius: 10px;     /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    font-family: Arial, sans-serif;
+}
+h1 {
+    font-size: 40px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form title labels */
+.form-input-title {
+    font-weight: bold;
+    margin: 10px 0 5px;
+    color: #333;
+}
+
+/* Text, Email, Password inputs */
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 8px;
+    border: 1px solid #ccc;  /* Light border */
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border 0.3s;
+}
+
+/* Highlight input on focus */
+.form-container input:focus {
+    border-color: #04AA6D;  /* Green highlight */
+    outline: none;
+    box-shadow: 0 0 4px rgba(4, 170, 109, 0.3);
+}
+
+/* Invalid field message */
+.form-invalid {
+    color: red;
+    font-size: 12px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+
+
+/* Responsive adjustments */
+@media screen and (max-width: 500px) {
+    .form-container {
+    padding: 15px;
+    margin: 20px;
+    }
+}

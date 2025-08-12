@@ -1,0 +1,17 @@
+/* Submit button */
+.form-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #04AA6D; /* Green button */
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+/* Hover effect for button */
+.btn:hover {
+    background-color: #039e64;
+}
