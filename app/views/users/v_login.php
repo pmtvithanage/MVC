@@ -26,6 +26,7 @@
         <!--submit button-->
         <button type="submit" class="form-btn">login</button>
     </form>
+    <?php flash('reg_flash')?>
 </div>
 
 <?php require_once APP_ROOT . '/views/inc/footer.php';?>
