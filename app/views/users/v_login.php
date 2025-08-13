@@ -5,7 +5,7 @@
 
 
 <div class="form-container">
-    <h1>User sign up</h1>
+    <h1>Login</h1>
 
     <p><b>Please fill the correct credentials to login</b></p>
     <!-- Form for user registration can be added here -->
@@ -13,13 +13,13 @@
 
         <!--email input-->
         <div class="form-input-title">Email</div>
-        <input type="email" id="email" name="email" required>
-        <span class="form-invalid"></span>
+        <input type="email" id="email" name="email" value="<?php echo $data['email'];?>">
+        <span class="form-invalid"><?php echo $data['email_err'];?></span>
 
         <!--password input-->
         <div class="form-input-title">Password</div>
-        <input type="password" id="password" name="password" required>
-        <span class="form-invalid"></span>
+        <input type="password" id="password" name="password" value="<?php echo $data['password'];?>">
+        <span class="form-invalid"><?php echo $data['password_err'];?></span>
 
         <br><br>
 

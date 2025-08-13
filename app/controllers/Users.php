@@ -84,9 +84,70 @@
             }
         }
         public function login(){
-            $data = [];
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                //form submission
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+                $data = [
+                    'email' => trim($_POST['email'] ?? ''),
+                    'password' => trim($_POST['password'] ?? ''),
+                    'email_err' => '',
+                    'password_err' => ''
+                ];
 
-            $this->view('users/v_login', $data);
+                //Validate email
+                if(empty($data['email'])){
+                    $data['email_err'] = 'Please enter email';
+                }else {
+                    //Check if email exists
+                    if($this->userModel->findUserByEmail($data['email'])){
+                        //User found
+                    }else {
+                        $data['email_err'] = 'No user found';
+                    }
+                }
+
+                //Validate password
+                if(empty($data['password'])){
+                    $data['password_err'] = 'Please enter password';
+                }
+                //Check if no errors log in the user
+                if(empty($data['email_err']) && empty($data['password_err'])) {
+                    $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+
+                    if($loggedInUser){
+                        //Create session
+                        session_start();
+                        $_SESSION['user_id'] = $loggedInUser->id;
+                        $_SESSION['user_email'] = $loggedInUser->email;
+                        $_SESSION['user_name'] = $loggedInUser->name;
+
+                        //Redirect to home page or dashboard
+                        header('Location: ' . URL_ROOT . '/home');
+                    } else {
+                        $data['password_err'] = 'Password incorrect';
+
+                        // Load the login view with errors
+                        $this->view('users/v_login', $data);
+                    }
+                }else {
+                    // Load the login view with errors
+                    $this->view('users/v_login', $data);
+                }
+
+                
+
+            }else {
+                //Initially show the login form
+                $data = [
+                    'email' => '',
+                    'password' => '',
+                    'email_err' => '',
+                    'password_err' => ''
+                ];
+                // Load the login view with the data
+                $this->view('users/v_login', $data);
+                
+            }
         }
         
     }

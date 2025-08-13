@@ -35,5 +35,19 @@
             }
         }
 
+        //login user
+        public function login($email, $password) {
+            $this->db->query("SELECT * FROM Users WHERE email = :email");
+            $this->db->bind(":email", $email);
+            $row = $this->db->single();
+
+            $hashedPassword = $row->password;
+            if (password_verify($password, $hashedPassword)) {
+                return $row; // User authenticated successfully
+            } else {
+                return false; // Invalid password
+            }
+        }
+
     }
 ?>
