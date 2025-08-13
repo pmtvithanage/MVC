@@ -1,0 +1,37 @@
+.post-container {
+    width: 100%;
+    max-width: 400px;        /* Keeps form from being too wide */
+    margin: 50px auto;       /* Center form */
+    padding: 20px;
+    background: #ffffff;     /* White background */
+    border-radius: 10px;     /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    font-family: Arial, sans-serif;
+}
+
+.post-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 8px;
+    border: 1px solid #ccc;  /* Light border */
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border 0.3s;
+    
+}
+.post-container textarea:focus {
+    border-color: #04AA6D;  /* Green highlight */
+    outline: none;
+    box-shadow: 0 0 4px rgba(4, 170, 109, 0.3);
+}
+.post-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 8px;
+    border: 1px solid #ccc;  /* Light border */
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border 0.3s;
+}

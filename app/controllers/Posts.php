@@ -1,8 +1,12 @@
 <?php
-    class Posts {
+    class Posts extends Controller {
         public function __construct() {
-            // Constructor logic if needed
-            $this->postsModel = $this->model('M_posts'); // Load the model
+            
+        }
+
+        public function create() {
+            $data = [];
+            $this->view('posts/v_create', $data);
         }
     }
 ?>
