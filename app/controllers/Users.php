@@ -1,12 +1,87 @@
 <?php
     class Users extends Controller {
         public function __construct() {
-            
+            $this->userModel = $this->model('M_Users'); // Load the user model
         }
         public function register(){
-            $data = [];
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                // Process the registration form submission
+                // Validate and save user data
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-            $this->view('users/v_register', $data);
+                //input data
+                $data = [
+                    'name' => trim($_POST['name'] ?? ''),
+                    'email' => trim($_POST['email'] ?? ''),
+                    'password' =>  trim($_POST['password'] ?? ''),
+                    'confirm_password' => trim($_POST['confirm_password'] ?? ''),
+                    
+                    'name_err' => '',
+                    'email_err' => '',
+                    'password_err' => '',
+                    'confirm_password_err'
+                ];
+
+                    // Validate inputs  
+
+                    //validate name
+                    if(empty($data['name'])) {
+                        $data['name_err'] = 'Please enter your name';
+                    }
+
+                    //validate email
+                    if(empty($data['email'])) {
+                        $data['email_err'] = 'Please enter your email';
+                    }else {
+                        // Check if email is already taken
+                        if($this->userModel->findUserByEmail($data['email'])) {
+                            $data['email_err'] = 'Email is already taken';
+                        }
+                    }
+
+                    //validate password
+                    if(empty($data['password'])) {
+                        $data['password_err'] = 'Please enter a password';
+                    } elseif(strlen($data['password']) < 6) {
+                        $data['password_err'] = 'Password must be at least 6 characters';
+                    }else {
+                        // Check if confirm password matches
+                        if($data['password'] !== $data['confirm_password']) {
+                            $data['confirm_password_err'] = 'Passwords do not match';
+                        }
+                    }
+                    // Validation is completed and no errors then register user
+                    if(empty($data['name_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
+                        // Hash the password
+                        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+                        // Register user
+                        if($this->userModel->register($data)) {
+                            // Redirect to login page or success page
+                            header('Location: ' . URL_ROOT . '/Users/login');
+                        } else {
+                            die('Something went wrong');
+                        }
+                    } else {
+                        // Load the registration view with errors
+                        $this->view('users/v_register', $data);
+                    }
+            }else {
+                // Show the registration form
+                $data = [
+                    'name' => '',
+                    'email' => '',
+                    'password' =>  '',
+                    'confirm_password' => '',
+                    
+                    'name_err' => '',
+                    'email_err' => '',
+                    'password_err' => '',
+                    'confirm_password_err'
+                ];
+                // Load the registration view with the data
+                $this->view('users/v_register', $data);
+            }
         }
         public function login(){
             $data = [];
