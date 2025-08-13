@@ -9,27 +9,28 @@
 
     <p><b>Please fill in this form to create an account.</b></p>
     <!-- Form for user registration can be added here -->
-    <form action="<?php echo URL_ROOT; ?>/users/register" method="post">
+    <form action="<?php echo URL_ROOT; ?>/Users/register" method="post">
 
         <!--name input-->
         <div class="form-input-title">Name</div>
-        <input type="text" id="name" name="name" required>
-        <span class="form-invalid"></span>
+        <input type="text" id="name" name="name" value="<?php echo $data['name'];?>">
+        <span class="form-invalid"><?php echo $data['name_err'];?></span>
+
 
         <!--email input-->
         <div class="form-input-title">Email</div>
-        <input type="email" id="email" name="email" required>
-        <span class="form-invalid"></span>
+        <input type="email" id="email" name="email" value="<?php echo $data['email'];?>">
+        <span class="form-invalid"><?php echo $data['email_err'];?></span>
 
         <!--password input-->
         <div class="form-input-title">Password</div>
-        <input type="password" id="password" name="password" required>
-        <span class="form-invalid"></span>
+        <input type="password" id="password" name="password" value="<?php echo $data['password'];?>">
+        <span class="form-invalid"><?php echo $data['password_err'];?></span>
 
         <!--confirm password input-->
         <div class="form-input-title">Confirm Password</div>
-        <input type="password" id="confirm_password" name="confirm_password" required>
-        <span class="form-invalid"></span>  
+        <input type="password" id="confirm_password" name="confirm_password" value="<?php echo $data['confirm_password'];?>">
+        <span class="form-invalid"><?php echo $data['confirm_password_err'];?></span>  
 
         <br><br>
 
