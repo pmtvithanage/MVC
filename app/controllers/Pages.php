@@ -6,7 +6,6 @@
 
             
         } 
-        //comment
 
         public function index() {
             
