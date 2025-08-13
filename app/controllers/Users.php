@@ -57,6 +57,8 @@
 
                         // Register user
                         if($this->userModel->register($data)) {
+                            //create a flash message
+                            flash('reg_flash', 'You are registered and can log in now', 'msg-flash');
                             // Redirect to login page or success page
                             redirect('users/login');
                         } else {
