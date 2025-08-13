@@ -8,7 +8,8 @@
         } 
 
         public function index() {
-            
+            $data = [];
+            $this->view('pages/v_index', $data);
         }
 
         public function about() {

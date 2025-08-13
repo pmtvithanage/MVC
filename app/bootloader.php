@@ -1,5 +1,8 @@
 <?php
 
+    // Load Helpers
+    require_once 'helpers/URL_Helper.php';
+
     // Load configuration
     require_once 'config/config.php';
     

@@ -58,7 +58,7 @@
                         // Register user
                         if($this->userModel->register($data)) {
                             // Redirect to login page or success page
-                            header('Location: ' . URL_ROOT . '/Users/login');
+                            redirect('users/login');
                         } else {
                             die('Something went wrong');
                         }
@@ -122,7 +122,7 @@
                         $_SESSION['user_name'] = $loggedInUser->name;
 
                         //Redirect to home page or dashboard
-                        header('Location: ' . URL_ROOT . '/home');
+                        redirect('pages/index');
                     } else {
                         $data['password_err'] = 'Password incorrect';
 
