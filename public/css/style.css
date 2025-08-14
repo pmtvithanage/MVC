@@ -2,6 +2,7 @@
 @import url('components/form_style.css');
 @import url('components/buttons.css');
 @import url('components/flash_message_style.css');
+@import url('posts/posts_style.css');
 
 
 @font-face {
