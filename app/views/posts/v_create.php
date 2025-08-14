@@ -6,13 +6,14 @@
 
 <div class="post-container">
     <center><h2>Create a post</h2></center>
-    <form action="">
-        <input type="text" name="title" id="title" placeholder="Post Title">
+    <form action="<?php echo URL_ROOT;?>/Posts/create" method="post">
+        <input type="text" name="title" id="title" placeholder="Post Title" value="<?php echo $data['title']; ?>" >
+        <span class="form-invalid"><?php echo $data['title_err'];?></span>
         <br>
-        <textarea name="content" id="body" placeholder="Content" rows="10" cols="70"></textarea>
+        <textarea name="body" id="body" placeholder="Content" rows="10" cols="70" ><?php echo $data['body']; ?></textarea>
+        <span class="form-invalid"><?php echo $data['body_err'];?></span>
         <br>
         <input type="submit" value="Create Post" class="post-btn">
-    </form>
     </form>
 </div>
 
